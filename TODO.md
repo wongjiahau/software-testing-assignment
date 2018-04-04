@@ -1,6 +1,6 @@
 # TODO
 ## Part A
-- [ ] (a) Decision table  
+- [X] (a) Decision table  
 - [ ] (b) Appropriateness of test cases.
 
 ## Part B
