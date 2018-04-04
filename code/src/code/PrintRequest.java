@@ -6,16 +6,16 @@ public class PrintRequest {
     private int quantity;
     private Set<PrintOption> options;
     private Image image;
-    public PrintRequest(int quantity, Set<PrintOption> options, Image image) {
+    public PrintRequest(int quantity, Set<PrintOption> options, Image image) throws Exception {
+		if(quantity < 1 || quantity > 100) {
+			throw new Exception("Expected quantity to be between 1 to 100 but got " + this.quantity);
+		}
         this.quantity = quantity;
         this.options  = options;
         this.image    = image;
 	}
 	
-	public double getChargePerPiece()  throws Exception {
-		if(this.quantity < 1 || this.quantity > 100) {
-			throw new Exception("Expected quantity to be between 1 to 100 but got " + this.quantity);
-		}
+	public double getChargePerPiece() {
 		double chargePerPrice = 
 			this.quantity < 6  ? 1.00 : 
 			this.quantity < 11 ? 0.90 :		

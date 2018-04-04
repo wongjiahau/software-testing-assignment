@@ -76,10 +76,22 @@ public class TestPrintRequest {
 
 	@Parameters(method = "getParams")
 	@Test
-	public void test(int quantity, Set<PrintOption> options, double expectedChargePerPiece) 
+	public void testBoundaries(int quantity, Set<PrintOption> options, double expectedChargePerPiece) 
 		throws Exception {
 		PrintRequest printRequest = new PrintRequest(quantity, options, null);
 		assertEquals(expectedChargePerPiece, printRequest.getChargePerPiece(), 0.0001);
 	}
+
+	@Test(expected=Exception.class)
+	public void testExceptions1_shouldThrowIfQuantityLessThanOne() throws Exception {
+		PrintRequest printRequest = new PrintRequest(0, null, null);
+	}
+
+	@Test(expected=Exception.class)
+	public void testExceptions2_shouldThrowIfQuantityMoreThanHundred() throws Exception {
+		PrintRequest printRequest = new PrintRequest(101, null, null);
+	}
+
+
 
 }
