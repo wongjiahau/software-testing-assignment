@@ -1,5 +1,6 @@
+package code;
 
-public class HighQualityPaperOption extends PrintOption {
+public class DesignEffectOption extends PrintOption {
 
 	@Override
 	public double getChargPerPiece() {
