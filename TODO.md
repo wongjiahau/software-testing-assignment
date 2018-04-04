@@ -1,7 +1,7 @@
 # TODO
 ## Part A
 - [X] (a) Decision table  
-- [ ] (b) Appropriateness of test cases.
+- [X] (b) Appropriateness of test cases.
 
 ## Part B
 - [ ] (a) Correctness of application code (2 classes).  
