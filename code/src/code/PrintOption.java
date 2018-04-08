@@ -1,4 +1,4 @@
 package code;
 public abstract class PrintOption {
-    public abstract double getChargPerPiece();
+    public abstract double getChargePerPiece();
 }

@@ -12,6 +12,7 @@ import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.runner.RunWith;
 
+import code.CalculateCharge;
 import code.DesignEffectOption;
 import code.HighQualityPaperOption;
 import code.PrintOption;
@@ -19,7 +20,7 @@ import code.PrintRequest;
 
 
 @RunWith (JUnitParamsRunner.class)
-public class TestPrintRequest {
+public class TestCalculateCharge {
 	private Object[] getParams() {
 		HashSet<PrintOption> noOption         = 
 			new HashSet<PrintOption>();
@@ -79,17 +80,21 @@ public class TestPrintRequest {
 	public void testBoundaries(int quantity, Set<PrintOption> options, double expectedChargePerPiece) 
 		throws Exception {
 		PrintRequest printRequest = new PrintRequest(quantity, options, null);
-		assertEquals(expectedChargePerPiece, printRequest.getChargePerPiece(), 0.0001);
+		double result = new CalculateCharge().getChargePerPiece(printRequest);
+		assertEquals(expectedChargePerPiece, result, 0.0001);
 	}
 
 	@Test(expected=Exception.class)
 	public void testExceptions1_shouldThrowIfQuantityLessThanOne() throws Exception {
 		PrintRequest printRequest = new PrintRequest(0, null, null);
+		double result = new CalculateCharge().getChargePerPiece(printRequest);
+		
 	}
 
 	@Test(expected=Exception.class)
 	public void testExceptions2_shouldThrowIfQuantityMoreThanHundred() throws Exception {
 		PrintRequest printRequest = new PrintRequest(101, null, null);
+		double result = new CalculateCharge().getChargePerPiece(printRequest);
 	}
 
 

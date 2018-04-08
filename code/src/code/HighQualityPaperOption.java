@@ -3,7 +3,7 @@ package code;
 public class HighQualityPaperOption extends PrintOption {
 
 	@Override
-	public double getChargPerPiece() {
+	public double getChargePerPiece() {
 		return 0.10;
 	}
 

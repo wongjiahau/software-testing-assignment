@@ -15,20 +15,6 @@ public class PrintRequest {
         this.image    = image;
 	}
 	
-	public double getChargePerPiece() {
-		double chargePerPrice = 
-			this.quantity < 6  ? 1.00 : 
-			this.quantity < 11 ? 0.90 :		
-			this.quantity < 21 ? 0.70 :		
-			this.quantity < 51 ? 0.50 :		
-								 0.10
-			;
-		for (PrintOption option : this.options) {
-			chargePerPrice += option.getChargPerPiece();
-		}
-
-		return chargePerPrice;
-	}
 
 	/**
 	 * @return the quantity
