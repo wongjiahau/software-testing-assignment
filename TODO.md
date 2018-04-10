@@ -12,3 +12,12 @@
 - [ ] (f) Combining test cases into test suites  
 - [ ] (g) Setting up some tests so that test values are read from a text file instead of hardcoding into test code
 - [ ] (h) Perform integration testing after unit tests have been completed
+
+
+## Teacher's explanation
+- Input module will call charge module and charge module will call print request module
+- Use mockito to stub the input module
+- Use mockito to spy print request module to check number of calls, e.g. if there are 10 PR then 10 calls should be expected
+- Input validation, invalid range of integer, gibberish input should throw exceptions
+- Load test input from text files 
+
