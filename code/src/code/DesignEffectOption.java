@@ -1,6 +1,9 @@
 package code;
 
 public class DesignEffectOption extends PrintOption {
+	public DesignEffectOption() {
+		super("DesignEffect");
+	}
 
 	@Override
 	public double getChargePerPiece() {

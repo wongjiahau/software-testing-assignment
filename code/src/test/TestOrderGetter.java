@@ -15,6 +15,7 @@ import org.mockito.InOrder;
 import code.DisplayUtility;
 import code.InvalidOptionException;
 import code.OrderGetter;
+import code.PrintRequest;
 
 import static org.junit.Assert.*;
 import static org.mockito.Matchers.any;
@@ -49,7 +50,7 @@ public class TestOrderGetter {
 	}
 
 	public Object[] getInvalidQuantity() {
-		return new String[] { "a", "1.0", "k12", "0", };
+		return new String[] { "a", "1.0", "k12", "0", "101"};
 	}
 
 
@@ -64,6 +65,18 @@ public class TestOrderGetter {
 	public Object[] getInvalidOptions() {
 		return new String[] {"0", "4", "a"};
 	}
+
+	// @Test
+	// @Parameters(method="getValidInput") 
+	// public void test_validInput(String quantity, String option) throws Exception {
+	// 	when(this.mockDisplayUtility.getFromScreen()).thenReturn(quantity, option);
+	// 	PrintRequest printRequest = this.orderGetter.getRequest();
+		
+	// }
+
+	// public Object[] getValidInput() {
+
+	// }
 
 	
 
