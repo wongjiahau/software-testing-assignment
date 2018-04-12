@@ -5,18 +5,16 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
+import ui.PrintRequestGetter;
 
 import org.junit.Before;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import org.mockito.InOrder;
 
 import code.DesignEffectOption;
 import code.DisplayUtility;
 import code.HighQualityPaperOption;
 import code.InvalidOptionException;
-import code.OrderGetter;
 import code.PrintOption;
 import code.PrintRequest;
 
@@ -32,7 +30,6 @@ import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Set;
 
 import static org.mockito.Mockito.anyList;
 import static org.mockito.Mockito.anyListOf;
@@ -41,20 +38,20 @@ import static org.mockito.Mockito.eq;
 import static org.mockito.Mockito.inOrder;
 
 @RunWith(JUnitParamsRunner.class)
-public class TestOrderGetter {
+public class TestPrintRequestGetter {
 	DisplayUtility mockDisplayUtility;
-	OrderGetter orderGetter;
+	PrintRequestGetter printRequestGetter;
 	@Before
 	public void setupForAllTests() {
 		this.mockDisplayUtility = mock(DisplayUtility.class);
-		this.orderGetter = new OrderGetter(mockDisplayUtility);
+		this.printRequestGetter = new PrintRequestGetter(mockDisplayUtility);
 	}	
 
 	@Test(expected=NumberFormatException.class)
 	@Parameters(method="getInvalidQuantity")
 	public void test_invalidQuantity(String quantity) throws Exception {
 		when(this.mockDisplayUtility.getFromScreen()).thenReturn(quantity);
-		this.orderGetter.getRequest();
+		this.printRequestGetter.getPrintRequest();
 	}
 
 	public Object[] getInvalidQuantity() {
@@ -67,7 +64,7 @@ public class TestOrderGetter {
 	public void test_invalidOptions(String option) throws Exception {
 		String aValidQuantity = "1";
 		when(this.mockDisplayUtility.getFromScreen()).thenReturn(aValidQuantity, option);
-		this.orderGetter.getRequest();
+		this.printRequestGetter.getPrintRequest();
 	}
 
 	public Object[] getInvalidOptions() {
@@ -78,7 +75,7 @@ public class TestOrderGetter {
 	@Parameters(method="getValidInput") 
 	public void test_validInput(String quantity, String option, PrintRequest expected) throws Exception {
 		when(this.mockDisplayUtility.getFromScreen()).thenReturn(quantity, option);
-		PrintRequest actualPrintRequest = this.orderGetter.getRequest();
+		PrintRequest actualPrintRequest = this.printRequestGetter.getPrintRequest();
 		assertTrue(actualPrintRequest.equals(expected));
 		
 	}

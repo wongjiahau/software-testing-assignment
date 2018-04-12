@@ -1,18 +1,21 @@
-package code;
+package ui;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.regex.*;  
+import java.util.regex.*;
+
+import code.DesignEffectOption;
+import code.DisplayUtility;
+import code.HighQualityPaperOption;
+import code.InvalidOptionException;
+import code.PrintOption;
+import code.PrintRequest;  
 
 
-public class OrderGetter {
-    private DisplayUtility du;
-
-    public OrderGetter(DisplayUtility displayUtility) {
-        super();
-        this.du = displayUtility;
+public class PrintRequestGetter extends Ui {
+    public PrintRequestGetter(DisplayUtility du) {
+        super(du);
     }
-
-    public PrintRequest getRequest() throws Exception {
+    public PrintRequest getPrintRequest() throws Exception {
         this.du.showToScreen("Enter quantity");
         int quantity = Integer.parseInt(this.du.getFromScreen());
         if(quantity <= 0 || quantity > 100) {
