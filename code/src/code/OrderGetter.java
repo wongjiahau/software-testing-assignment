@@ -15,7 +15,7 @@ public class OrderGetter {
     public PrintRequest getRequest() throws Exception {
         this.du.showToScreen("Enter quantity");
         int quantity = Integer.parseInt(this.du.getFromScreen());
-        if(quantity <= 0) {
+        if(quantity <= 0 || quantity > 100) {
             throw new NumberFormatException();
         }
         this.du.showToScreen(
@@ -29,13 +29,13 @@ public class OrderGetter {
             throw new InvalidOptionException(optionStr);
         }
         Set<PrintOption> options = new HashSet<PrintOption>();
-        if(optionStr.equals("a")) {
+        if(optionStr.equals("1")) {
             options.add(new HighQualityPaperOption());
         }
-        if(optionStr.equals("b")) {
+        if(optionStr.equals("2")) {
             options.add(new DesignEffectOption());
         }
-        if(optionStr.equals("c")) {
+        if(optionStr.equals("3")) {
             options.add(new HighQualityPaperOption());
             options.add(new DesignEffectOption());
         }
