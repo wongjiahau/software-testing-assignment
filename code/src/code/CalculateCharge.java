@@ -24,6 +24,9 @@ public class CalculateCharge {
 	}
 
 	public double getOrderCharge(Order order) throws Exception {
+		if(order.getPrintRequests().size() < 1) {
+			throw new Exception("There are no print requests in this order.");
+		}
 		double totalCharge = 0;
 		for (PrintRequest printRequest : order.getPrintRequests()) {
 			totalCharge += this.getPrintRequestCharge(printRequest);

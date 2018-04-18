@@ -103,5 +103,12 @@ public class TestCalculateCharge {
 		verify(calculateCharge, times(1)).getPrintRequestCharge(printRequest2);
 		assertEquals(11.1, result, 0.00001);
 	}
+
+	@Test(expected = Exception.class)
+	public void test_getOrderCharge_shouldThrowIfNoPrintRequests() throws Exception {
+		Order order = new Order(new ArrayList<PrintRequest>());
+		CalculateCharge calculateCharge = spy(new CalculateCharge());
+		double result = calculateCharge.getOrderCharge(order);
+	}
 	
 }
