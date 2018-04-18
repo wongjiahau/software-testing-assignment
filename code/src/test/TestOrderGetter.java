@@ -42,21 +42,24 @@ public class TestOrderGetter {
 
     @Test
     public void test_onePrintRequestOnly() throws Exception {
-        when(this.mockDisplayUtility.getFromScreen()).thenReturn("1", "1", "n");
+        when(this.mockDisplayUtility.getFromScreen()).thenReturn("1", "1", "~/myimage.png", "n");
         Order actualOrder = this.orderGetter.getOrder();
         Order expectedOrder = new Order(new ArrayList<PrintRequest>(Arrays.asList(
-                new PrintRequest(1, new HashSet<PrintOption>(Arrays.asList(new HighQualityPaperOption())), null))));
+                new PrintRequest(1, new HashSet<PrintOption>(Arrays.asList(new HighQualityPaperOption())), "~/myimage.png"))));
         assertEquals(expectedOrder, actualOrder);
 
     }
 
     @Test
     public void test_twoPrintRequests() throws Exception {
-        when(this.mockDisplayUtility.getFromScreen()).thenReturn("1", "1", "y", "2", "2", "n");
+        when(this.mockDisplayUtility.getFromScreen()).thenReturn(
+            "1", "1", "~/myimage1.png", "y", 
+            "2", "2", "~/myimage2.png", "n"
+        );
         Order actualOrder = this.orderGetter.getOrder();
         Order expectedOrder = new Order(new ArrayList<PrintRequest>(Arrays.asList(
-                new PrintRequest(1, new HashSet<PrintOption>(Arrays.asList(new HighQualityPaperOption())), null),
-                new PrintRequest(2, new HashSet<PrintOption>(Arrays.asList(new DesignEffectOption())), null))));
+                new PrintRequest(1, new HashSet<PrintOption>(Arrays.asList(new HighQualityPaperOption())), "~/myimage1.png"),
+                new PrintRequest(2, new HashSet<PrintOption>(Arrays.asList(new DesignEffectOption())), "~/myimage2.png"))));
         assertEquals(expectedOrder, actualOrder);
 
     }

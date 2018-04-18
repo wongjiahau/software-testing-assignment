@@ -36,7 +36,9 @@ public class TestApp {
 
 	@Test
 	public void test() throws Exception {
-		when(mockDisplayUtility.getFromScreen()).thenReturn("1", "1", "y", "2", "2", "n");
+		when(mockDisplayUtility.getFromScreen()).thenReturn(
+			"1", "1", "~/myimage1.png", "y", 
+			"2", "2", "~/myimage2.png", "n");
 		app.run();
 		assertEquals(app.getCurrentOrder().getPrintRequests().size(), 2);
 		verify(orderGetter, times(1)).getOrder();
