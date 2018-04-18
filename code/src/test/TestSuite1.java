@@ -6,11 +6,11 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 
 @Suite.SuiteClasses({
+   TestApp.class,
+   TestCalculateCharge.class,
    TestOrderGetter.class,
-   TestPrintRequestGetter.class,
    TestPrintRequest.class,
-   TestCalculateCharge.class
+   TestPrintRequestGetter.class,
 })
 
-public class TestSuite1 {   
-}  	
+public class TestSuite1 {}  	
