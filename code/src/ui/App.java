@@ -44,9 +44,16 @@ public class App extends Ui {
     }
 
     public void run() throws Exception {
-        order = orderGetter.getOrder();
-        charge = calculateCharge.getOrderCharge(order);
         NumberFormat formatter = new DecimalFormat("#0.00");     
+        order = orderGetter.getOrder();
+        for (int i = 0; i < order.getPrintRequests().size(); i++) {
+            du.showToScreen("The charge of print request #" + (i + 1) + " is RM"
+                + formatter.format(
+                    calculateCharge.getPrintRequestCharge(order.getPrintRequests().get(i))
+                )
+            ); 
+        }
+        charge = calculateCharge.getOrderCharge(order);
         du.showToScreen("The charge of the order is RM" + formatter.format(charge));
         for (PrintRequest printRequest : order.getPrintRequests()) {
             photoPrinter.queueRequest(printRequest);
