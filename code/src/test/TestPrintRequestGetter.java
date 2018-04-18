@@ -68,7 +68,7 @@ public class TestPrintRequestGetter {
 	}
 
 	public Object[] getInvalidOptions() {
-		return new String[] {"0", "4", "a"};
+		return new String[] {"0", "5", "a"};
 	}
 
 	@Test
@@ -82,6 +82,7 @@ public class TestPrintRequestGetter {
 
 	public Object[] getValidInput() {
 		return new Object[] {
+			new Object[] {"1", "4", new PrintRequest(1, new HashSet<PrintOption>(), null)},
 			new Object[] {"1", "1", new PrintRequest(1, new HashSet<PrintOption>(Arrays.asList(new HighQualityPaperOption())), null)},
 			new Object[] {"1", "2", new PrintRequest(1, new HashSet<PrintOption>(Arrays.asList(new DesignEffectOption())), null)},
 			new Object[] {"100", "3", new PrintRequest(100, new HashSet<PrintOption>(Arrays.asList(new DesignEffectOption(), new HighQualityPaperOption())), null)},

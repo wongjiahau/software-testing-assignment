@@ -16,19 +16,21 @@ public class PrintRequestGetter extends Ui {
         super(du);
     }
     public PrintRequest getPrintRequest() throws Exception {
-        this.du.showToScreen("Enter quantity");
+        
+        this.du.showToScreen("Enter quantity : ");
         int quantity = Integer.parseInt(this.du.getFromScreen());
         if(quantity <= 0 || quantity > 100) {
             throw new NumberFormatException();
         }
         this.du.showToScreen(
-            "Select additional option: " + 
-            "1. High Quality Paper" + 
-            "2. Design Effect" + 
-            "3. Both"
+            "Select additional option: ",
+            "1. High Quality Paper", 
+            "2. Design Effect", 
+            "3. Both",
+            "4. None"
         );
         String optionStr = this.du.getFromScreen();
-        if(!Pattern.matches("^[123]$", optionStr)) {
+        if(!Pattern.matches("^[1234]$", optionStr)) {
             throw new InvalidOptionException(optionStr);
         }
         Set<PrintOption> options = new HashSet<PrintOption>();
@@ -41,6 +43,9 @@ public class PrintRequestGetter extends Ui {
         if(optionStr.equals("3")) {
             options.add(new HighQualityPaperOption());
             options.add(new DesignEffectOption());
+        }
+        if(optionStr.equals("4")) {
+            /* Do nothing */
         }
         return new PrintRequest(quantity, options, null);
     }
