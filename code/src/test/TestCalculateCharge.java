@@ -2,11 +2,7 @@ package test;
 
 import static org.junit.Assert.*;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -17,9 +13,12 @@ import org.junit.Test;
 
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
-import sun.misc.IOUtils;
 
 import org.junit.runner.RunWith;
+
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.spy;
 
 import code.CalculateCharge;
 import code.DesignEffectOption;
@@ -86,7 +85,9 @@ public class TestCalculateCharge {
 	public void test_getPrintRequestCharge_case1() throws Exception {
 		// Only 1 unit test is needed for this module because it is dependant getChargePerPiece
 		PrintRequest printRequest = new PrintRequest(77, noOption, null);
-		double result = new CalculateCharge().getPrintRequestCharge(printRequest);
+		CalculateCharge calculateCharge = spy(new CalculateCharge());
+		double result = calculateCharge.getPrintRequestCharge(printRequest);
+		verify(calculateCharge, times(1)).getChargePerPiece(printRequest);
 		assertEquals(7.7, result, 0);
 	}
 
@@ -96,10 +97,11 @@ public class TestCalculateCharge {
 		PrintRequest printRequest1 = new PrintRequest(99, noOption, null);
 		PrintRequest printRequest2 = new PrintRequest(1, bothOptions, null);
 		Order order = new Order(new ArrayList<PrintRequest>(Arrays.asList(printRequest1, printRequest2)));
-		double result = new CalculateCharge().getOrderCharge(order);
+		CalculateCharge calculateCharge = spy(new CalculateCharge());
+		double result = calculateCharge.getOrderCharge(order);
+		verify(calculateCharge, times(1)).getPrintRequestCharge(printRequest1);
+		verify(calculateCharge, times(1)).getPrintRequestCharge(printRequest2);
 		assertEquals(11.1, result, 0.00001);
-
-
 	}
 	
 }
