@@ -24,12 +24,19 @@ import org.junit.runner.RunWith;
 import code.CalculateCharge;
 import code.DesignEffectOption;
 import code.HighQualityPaperOption;
+import code.Order;
 import code.PrintOption;
 import code.PrintRequest;
 
 @RunWith(JUnitParamsRunner.class)
 public class TestCalculateCharge {
 	Scanner inputDataScanner;
+	HashSet<PrintOption> noOption = new HashSet<PrintOption>();
+	HashSet<PrintOption> highQualityPaper = new HashSet<PrintOption>(Arrays.asList(new HighQualityPaperOption()));
+	HashSet<PrintOption> designEffect = new HashSet<PrintOption>(Arrays.asList(new DesignEffectOption()));
+	HashSet<PrintOption> bothOptions = new HashSet<PrintOption>(
+			Arrays.asList(new HighQualityPaperOption(), new DesignEffectOption()));
+
 	public TestCalculateCharge() throws Exception {
 		super();
 		File file = new File("TestCalculateCharge.data.txt");
@@ -37,12 +44,6 @@ public class TestCalculateCharge {
 	}
 
 	private Object[] getParams() {
-		HashSet<PrintOption> noOption = new HashSet<PrintOption>();
-		HashSet<PrintOption> highQualityPaper = new HashSet<PrintOption>(Arrays.asList(new HighQualityPaperOption()));
-		HashSet<PrintOption> designEffect = new HashSet<PrintOption>(Arrays.asList(new DesignEffectOption()));
-		HashSet<PrintOption> bothOptions = new HashSet<PrintOption>(
-				Arrays.asList(new HighQualityPaperOption(), new DesignEffectOption()));
-
 		ArrayList<Object> params = new ArrayList<Object>();
 		while(this.inputDataScanner.hasNextLine()) {
 			String[] data = this.inputDataScanner.nextLine().split(",");
@@ -62,23 +63,43 @@ public class TestCalculateCharge {
 
 	@Parameters(method = "getParams")
 	@Test
-	public void testBoundaries(int quantity, Set<PrintOption> options, double expectedChargePerPiece) throws Exception {
+	public void test_getChargePerPiece_Boundaries(int quantity, Set<PrintOption> options, double expectedChargePerPiece) throws Exception {
 		PrintRequest printRequest = new PrintRequest(quantity, options, null);
 		double result = new CalculateCharge().getChargePerPiece(printRequest);
 		assertEquals(expectedChargePerPiece, result, 0.0001);
 	}
 
 	@Test(expected = Exception.class)
-	public void testExceptions1_shouldThrowIfQuantityLessThanOne() throws Exception {
-		PrintRequest printRequest = new PrintRequest(0, null, null);
+	public void test_getChargePerPiece_shouldThrowIfQuantityLessThanOne() throws Exception {
+		PrintRequest printRequest = new PrintRequest(0, noOption, null);
 		double result = new CalculateCharge().getChargePerPiece(printRequest);
 
 	}
 
 	@Test(expected = Exception.class)
-	public void testExceptions2_shouldThrowIfQuantityMoreThanHundred() throws Exception {
-		PrintRequest printRequest = new PrintRequest(101, null, null);
+	public void test_getChargePerPiece_shouldThrowIfQuantityMoreThanTwo() throws Exception {
+		PrintRequest printRequest = new PrintRequest(101, noOption, null);
 		double result = new CalculateCharge().getChargePerPiece(printRequest);
 	}
 
+	@Test
+	public void test_getPrintRequestCharge_case1() throws Exception {
+		// Only 1 unit test is needed for this module because it is dependant getChargePerPiece
+		PrintRequest printRequest = new PrintRequest(77, noOption, null);
+		double result = new CalculateCharge().getPrintRequestCharge(printRequest);
+		assertEquals(7.7, result, 0);
+	}
+
+	@Test
+	public void test_getOrderCharge_case1() throws Exception {
+		// Only 1 unit test is needed for this module because it is dependant getPrintRequestCharge
+		PrintRequest printRequest1 = new PrintRequest(99, noOption, null);
+		PrintRequest printRequest2 = new PrintRequest(1, bothOptions, null);
+		Order order = new Order(new ArrayList<PrintRequest>(Arrays.asList(printRequest1, printRequest2)));
+		double result = new CalculateCharge().getOrderCharge(order);
+		assertEquals(11.1, result, 0.00001);
+
+
+	}
+	
 }

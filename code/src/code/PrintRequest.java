@@ -8,9 +8,9 @@ public class PrintRequest {
     private Set<PrintOption> options;
     private String imagePath;
     public PrintRequest(int quantity, Set<PrintOption> options, String imagePath) {
-        this.quantity = quantity;
-        this.options  = options;
-        this.imagePath    = imagePath;
+        this.quantity  = quantity;
+        this.options   = options;
+        this.imagePath = imagePath;
 	}
 
 	/**
