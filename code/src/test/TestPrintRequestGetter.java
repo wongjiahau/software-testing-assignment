@@ -14,9 +14,9 @@ import org.junit.runner.RunWith;
 import code.DesignEffectOption;
 import code.DisplayUtility;
 import code.HighQualityPaperOption;
-import code.InvalidOptionException;
 import code.PrintOption;
 import code.PrintRequest;
+import exceptions.InvalidOptionException;
 
 import static org.junit.Assert.*;
 import static org.mockito.Matchers.any;

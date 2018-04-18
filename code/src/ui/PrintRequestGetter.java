@@ -6,9 +6,10 @@ import java.util.regex.*;
 import code.DesignEffectOption;
 import code.DisplayUtility;
 import code.HighQualityPaperOption;
-import code.InvalidOptionException;
 import code.PrintOption;
-import code.PrintRequest;  
+import code.PrintRequest;
+import exceptions.InvalidOptionException;
+import exceptions.InvalidQuantityException;  
 
 
 public class PrintRequestGetter extends Ui {
@@ -16,11 +17,10 @@ public class PrintRequestGetter extends Ui {
         super(du);
     }
     public PrintRequest getPrintRequest() throws Exception {
-        
-        this.du.showToScreen("Enter quantity : ");
+        this.du.showToScreen("Enter quantity (1-100) :");
         int quantity = Integer.parseInt(this.du.getFromScreen());
         if(quantity <= 0 || quantity > 100) {
-            throw new NumberFormatException();
+            throw new InvalidQuantityException(quantity);
         }
         this.du.showToScreen(
             "Select additional option: ",

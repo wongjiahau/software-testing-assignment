@@ -23,6 +23,7 @@ public class App extends Ui {
             try {
                 app.run();
             } catch (Exception ex) {
+                du.showToScreen("ERROR : ");
                 du.showToScreen(ex.getMessage());
                 du.pressAnyKeyToContinue();
             }

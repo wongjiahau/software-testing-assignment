@@ -1,10 +1,12 @@
 package code;
 
+import exceptions.InvalidQuantityException;
+
 public class CalculateCharge {
 	public double getChargePerPiece(PrintRequest printRequest) throws Exception {
-		double quantity = printRequest.getQuantity();
+		int quantity = printRequest.getQuantity();
 		if(quantity < 1 || quantity > 100) {
-			throw new Exception("Expected quantity to be between 1 and 100 but got " + quantity + ".");	
+			throw new InvalidQuantityException(quantity);	
 		}
 		double chargePerPrice = 
 			quantity < 5  ? 1.00 : 
