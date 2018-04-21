@@ -8,8 +8,8 @@
 Case|Quantity|Options|Expected CPP|  
 --|--|--|--|
   R1.1|  1|  none|1.00  
-  R1.2|  5|  none|1.00  
-  R2.1|  6|  none|0.90
+  R1.2|  4|  none|1.00  
+  R2.1|  5|  none|0.90
   R2.2| 10|  none|0.90  
   R3.1| 11|  none|0.70  
   R3.2| 20|  none|0.70  
