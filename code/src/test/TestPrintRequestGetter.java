@@ -18,24 +18,12 @@ import code.PrintRequest;
 import exceptions.InvalidOptionException;
 import exceptions.InvalidQuantityException;
 
-import static org.junit.Assert.*;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyInt;
-import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
 import java.util.HashSet;
 
-import static org.mockito.Mockito.anyList;
-import static org.mockito.Mockito.anyListOf;
-import static org.mockito.Mockito.anyObject;
-import static org.mockito.Mockito.eq;
-import static org.mockito.Mockito.inOrder;
 
 @RunWith(JUnitParamsRunner.class)
 public class TestPrintRequestGetter {

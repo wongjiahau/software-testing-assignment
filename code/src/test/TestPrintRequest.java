@@ -6,9 +6,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 
 import junitparams.JUnitParamsRunner;
-import junitparams.Parameters;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -17,7 +15,6 @@ import code.HighQualityPaperOption;
 import code.PrintOption;
 import code.PrintRequest;
 
-import org.junit.Test;
 
 @RunWith(JUnitParamsRunner.class)
 public class TestPrintRequest {

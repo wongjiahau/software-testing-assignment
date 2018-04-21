@@ -6,7 +6,6 @@ import org.junit.Test;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import junitparams.JUnitParamsRunner;
-import junitparams.Parameters;
 import code.DesignEffectOption;
 import code.DisplayUtility;
 import code.HighQualityPaperOption;
@@ -15,14 +14,7 @@ import code.PrintOption;
 import code.PrintRequest;
 import ui.OrderGetter;
 
-import static org.junit.Assert.*;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyInt;
-import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;

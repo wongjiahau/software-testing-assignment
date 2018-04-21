@@ -1,6 +1,4 @@
 package code;
-import java.awt.Image;
-import java.util.Arrays;
 import java.util.Set;
 
 public class PrintRequest {
